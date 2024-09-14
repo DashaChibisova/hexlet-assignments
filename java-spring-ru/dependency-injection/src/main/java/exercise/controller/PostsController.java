@@ -48,7 +48,6 @@ public class PostsController {
         return post;
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PutMapping(path = "/{id}")
     public Post update(@PathVariable long id, @RequestBody Post post) {
         postRepository.findById(id)
