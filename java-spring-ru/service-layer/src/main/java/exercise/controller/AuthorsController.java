@@ -27,6 +27,37 @@ public class AuthorsController {
     private AuthorService authorService;
 
     // BEGIN
-    
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<AuthorDTO> index() {
+        return authorService.index();
+    }
+
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public  AuthorDTO create(@Valid @RequestBody AuthorCreateDTO authorCreateDTO) {
+        return authorService.create(authorCreateDTO);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  AuthorDTO show(@PathVariable Long id) {
+        return authorService.show(id);
+
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  AuthorDTO update(@RequestBody @Valid AuthorUpdateDTO authorUpdateDTO, @PathVariable Long id) {
+        return authorService.update(authorUpdateDTO, id);
+
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public  void destroy(@PathVariable Long id) {
+        authorService.destroy(id);
+    }
     // END
 }

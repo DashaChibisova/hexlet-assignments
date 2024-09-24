@@ -26,6 +26,38 @@ public class BooksController {
     private BookService bookService;
 
     // BEGIN
-    
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public List<BookDTO> index() {
+        return bookService.index();
+
+    }
+
+
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public BookDTO create(@Valid @RequestBody BookCreateDTO bookData) {
+        return bookService.create(bookData);
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  BookDTO show(@PathVariable Long id) {
+        return bookService.show(id);
+
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public  BookDTO update(@RequestBody @Valid BookUpdateDTO bookData, @PathVariable Long id) {
+        return bookService.update(bookData, id);
+
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public  void destroy(@PathVariable Long id) {
+        bookService.destroy( id);
+    }
     // END
 }
